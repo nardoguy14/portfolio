@@ -1,0 +1,58 @@
+@import "bootstrap";
+
+.thebe-output {
+    background-color: white;
+    color: black;
+}
+
+.thebe-input {
+    text-align: left;
+    font-size: 12px;
+    max-height: 50000px;
+
+}
+
+.thebe-cell {
+    text-align: left;
+    overflow-x: scroll;
+    max-width: 1000px;
+    width: 1000px;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.CodeMirror {
+    height: auto;
+}
+
+.CodeMirror-focused {
+}
+
+// Extend Bootstrap's primary button
+.thebe-button {
+    @extend .btn;
+    @extend .btn-light;
+    // Add or override styles as needed
+    margin-right: 10px;
+}
+
+.dataframe {
+    @extend .table
+}
+
+.jp-OutputPrompt {
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.thebe-input {
+    margin-bottom: 15px;
+}
+
+.thebe-controls {
+    margin-bottom: 15px;
+}
+
+.thebe-runall-button {
+    display: none;
+}
