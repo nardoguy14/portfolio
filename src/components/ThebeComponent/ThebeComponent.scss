@@ -1,8 +1,10 @@
 @import "bootstrap";
 
 .thebe-output {
-    background-color: white;
+    background-color: whitesmoke;
     color: black;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .thebe-input {
@@ -15,14 +17,13 @@
 .thebe-cell {
     text-align: left;
     overflow-x: scroll;
-    max-width: 1000px;
-    width: 1000px;
     font-size: 12px;
     margin-bottom: 20px;
 }
 
 .CodeMirror {
     height: auto;
+    border-radius: 10px
 }
 
 .CodeMirror-focused {
@@ -31,8 +32,7 @@
 // Extend Bootstrap's primary button
 .thebe-button {
     @extend .btn;
-    @extend .btn-light;
-    // Add or override styles as needed
+    @extend .btn-dark;
     margin-right: 10px;
 }
 
@@ -55,4 +55,12 @@
 
 .thebe-runall-button {
     display: none;
+}
+
+h1 {
+    text-align: left;
+}
+
+p {
+    text-align: left;
 }

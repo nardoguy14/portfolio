@@ -1,12 +1,16 @@
 import './App.css';
 import ThebeComponent from "./components/ThebeComponent/ThebeComponent";
+import NavBarComponent from "./components/NavBarComponent/NavBarComponent";
+import Container from "react-bootstrap/Container";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <ThebeComponent />
-      </header>
+        <NavBarComponent />
+        <Container>
+            <ThebeComponent />
+        </Container>
+
     </div>
   );
 }

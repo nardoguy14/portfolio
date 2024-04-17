@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
@@ -51,15 +53,23 @@ function ThebeComponent() {
         }
     }
 
-    const codeCells = data.cells.filter(cell => cell.cell_type === 'code');
-    console.log(codeCells)
+    // const codeCells = data.cells.filter(cell => cell.cell_type === 'code');
     return (
         <div>
-            {codeCells.map((cell, index) => (
-                <div data-executable="true" data-language="python">
-                    {cell.source.join('')}
-                </div>
-            ))}
+            {data.cells.map((cell, index) => {
+                if(cell.cell_type ==="code"){
+                    return (
+                    <div data-executable="true" data-language="python">
+                        {cell.source.join('')}
+                    </div>
+                    )
+                }
+                else{
+                    return (<div dangerouslySetInnerHTML={{__html: marked.parse(cell.source.join(''))}}></div>)
+                }
+
+            }
+            )}
         </div>
     );
 }
