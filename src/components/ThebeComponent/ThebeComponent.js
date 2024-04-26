@@ -10,13 +10,14 @@ import { useState } from 'react';
 import '../../css/dracula.css'
 import '../../css/lesser-dark.css'
 import './ThebeComponent.scss';
+import Container from "react-bootstrap/Container";
 
-function ThebeComponent() {
+function ThebeComponent({thebeUrl}) {
     const [data, setData] = useState({cells: []});      // To store fetched data
 
 
     if(data.cells.length === 0) {
-        fetch('https://raw.githubusercontent.com/nardoguy14/jupyter_notebooks/main/notebooks/iris_notebook.ipynb').then(resp => {
+        fetch(thebeUrl).then(resp => {
             let text = resp.text()
             return text
         }).then(text => {
@@ -55,7 +56,7 @@ function ThebeComponent() {
 
     // const codeCells = data.cells.filter(cell => cell.cell_type === 'code');
     return (
-        <div>
+        <Container>
             {data.cells.map((cell, index) => {
                 if(cell.cell_type ==="code"){
                     return (
@@ -70,7 +71,7 @@ function ThebeComponent() {
 
             }
             )}
-        </div>
+        </Container>
     );
 }
 
