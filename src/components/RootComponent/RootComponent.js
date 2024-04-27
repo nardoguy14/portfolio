@@ -6,6 +6,7 @@ import {createBrowserRouter, Link, Outlet, RouterProvider} from "react-router-do
 import ThebeComponent from "../ThebeComponent/ThebeComponent";
 import React from "react";
 import HomeComponent from "../HomeComponent/HomeComponent";
+import FooterComponent from "../FooterComponent/FooterComponent"
 
 
 function RootComponent() {
@@ -49,7 +50,7 @@ function RootComponent() {
                         </Container>
                     </Navbar>
                     <Outlet/>
-
+                    <FooterComponent />
                 </div>
             ),
             children: [

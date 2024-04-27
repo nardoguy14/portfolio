@@ -1,6 +1,6 @@
 import Container from "react-bootstrap/Container";
 import {Col, Row} from "react-bootstrap";
-
+import "./Home.css"
 function HomeComponent() {
 
     return (
