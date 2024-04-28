@@ -4,9 +4,9 @@ import "./Home.css"
 function HomeComponent() {
 
     return (
-        <Container style={{ height: "100vh", paddingTop: "15px"}}>
-            <Row>
-                <Col style={{textAlign: "left"}}>
+        <Container style={{  paddingTop: "15px", paddingBottom: "15px"}}>
+            <Row >
+                <Col style={{textAlign: "left"}} xs={12} md={6}>
                     Hey there!
                     <br/> <br/>
                     My name's Nardo. I've been a fullstack engineer the last 10 years. I've primarily focused a lot of
@@ -26,12 +26,8 @@ function HomeComponent() {
                     <br/> <br/>
                     Nardo
                 </Col>
-                <Col>
-                        <iframe style={{width:"100%", height:"100%"}} title="Littlest Tokyo Sunset - 3D Editor Challenge" frameBorder="0" allowFullScreen
-                                mozallowfullscreen="true" webkitallowfullscreen="true"
-                                allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
-                                execution-while-out-of-viewport execution-while-not-rendered web-share
-                                src="https://sketchfab.com/models/6fb1409c2459463ea8a5781dbf31a0a2/embed?autospin=1&autostart=1&transparent=1&ui_infos=0&ui_watermark_link=0&ui_watermark=0"></iframe>
+                <Col style={{ overflow: "hidden" }} xs={12} md={6}>
+                    <img src="/71569802_1041643106185599_2979183550032621069_n.jpg" alt="" height="400" title="Image Title" />
                 </Col>
             </Row>
         </Container>

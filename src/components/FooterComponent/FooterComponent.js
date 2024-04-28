@@ -8,18 +8,18 @@ const Footer = () => <footer className="page-footer font-small blue pt-4 bg-ligh
             <div className="col-md-6">
                 <h5 >Links</h5>
                 <ul className="list-unstyled">
-                    <li className={"footerLink"}><b>
+                    <li  style={{"textAlign": 'center'}}><b>
                         <ion-icon name="newspaper-outline"></ion-icon>
                     </b>:
                         <a href="/Bernardo Arevalo (4).pdf" target={"_blank"} rel="noopener noreferrer">  My Resume</a>
                     </li>
 
-                    <li className={"footerLink"}>
+                    <li style={{"textAlign": 'center'}}>
                         <ion-icon name="logo-linkedin"></ion-icon>
                         :
                         <a href="https://www.linkedin.com/in/bernardo-arevalo-3055bb237/" target={"_blank"} rel="noopener noreferrer">  LinkedIn</a>
                     </li>
-                    <li className={"footerLink"}>
+                    <li style={{"textAlign": 'center'}}>
                         <ion-icon name="logo-github"></ion-icon>
                         :
                         <a href="https://github.com/nardoguy14" rel="noopener noreferrer"
@@ -31,7 +31,9 @@ const Footer = () => <footer className="page-footer font-small blue pt-4 bg-ligh
             <div className="col-md-6 mb-md-0 mb-3">
             <h5>Contact</h5>
                 <ul className="list-unstyled">
-                    <li className={"footerLink"}><b>Email</b>: <a href="mailto: are.nardo@outlook.com"> are.nardo@icloud.com</a></li>
+                    <li style={{"textAlign": 'center'}}>
+                        <b>Email</b>: <a href="mailto: are.nardo@outlook.com"> are.nardo@icloud.com</a>
+                    </li>
                 </ul>
             </div>
         </div>
