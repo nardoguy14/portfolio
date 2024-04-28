@@ -5,7 +5,7 @@ import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
-
+import {getRandomNumber} from '../../util/numbers'
 
 import '../../css/dracula.css'
 import '../../css/lesser-dark.css'
@@ -13,7 +13,9 @@ import './ThebeComponent.scss';
 import Container from "react-bootstrap/Container";
 
 function ThebeComponent({thebeUrl}) {
-    const [data, setData] = useState({cells: []});      // To store fetched data
+    const [data, setData] = useState({cells: []});
+    const [useContent, setUseContent] = useState(false);
+
 
 
     if(data.cells.length === 0) {
@@ -54,25 +56,38 @@ function ThebeComponent({thebeUrl}) {
         }
     }
 
-    // const codeCells = data.cells.filter(cell => cell.cell_type === 'code');
-    return (
-        <Container>
-            {data.cells.map((cell, index) => {
-                if(cell.cell_type ==="code"){
-                    return (
+    let content = data.cells.map((cell, index) => {
+            if(cell.cell_type ==="code"){
+                return (
                     <div data-executable="true" data-language="python">
                         {cell.source.join('')}
                     </div>
-                    )
-                }
-                else{
-                    return (<div dangerouslySetInnerHTML={{__html: marked.parse(cell.source.join(''))}}></div>)
-                }
-
+                )
             }
-            )}
+            else{
+                return (<div dangerouslySetInnerHTML={{__html: marked.parse(cell.source.join(''))}}></div>)
+            }
+
+        }
+    )
+
+    const setIt = () => {
+        setUseContent(true)
+    }
+
+    setTimeout(setIt, getRandomNumber(1000, 3000));
+
+    return (
+        <Container>
+            {useContent && content}
+            {!useContent && <div style={{height: "80vh", justifyContent: "center",
+                alignItems: "center",
+                display: "flex"
+            }}>
+                <img src={"/loading-gif-png-5.gif"} height="100vh" alt="" />
+            </div>}
         </Container>
-    );
+    )
 }
 
 export default ThebeComponent;
