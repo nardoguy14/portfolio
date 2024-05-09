@@ -7,6 +7,7 @@ import ThebeComponent from "../ThebeComponent/ThebeComponent";
 import React from "react";
 import HomeComponent from "../HomeComponent/HomeComponent";
 import FooterComponent from "../FooterComponent/FooterComponent"
+import OpenAiComponent from "../OpenAiComponent/OpenAiComponent";
 
 
 function RootComponent() {
@@ -40,6 +41,10 @@ function RootComponent() {
                                             <Link to={"using_embeddings"}>Using OpenAI Embeddings</Link>
                                         </NavDropdown.Item>
 
+                                        <NavDropdown.Item>
+                                            <Link to={"open_ai_project"}>Embeddings & ChatGPT</Link>
+                                        </NavDropdown.Item>
+
 
 
                                     </NavDropdown>
@@ -69,6 +74,10 @@ function RootComponent() {
                 {
                     path: "home",
                     element: <HomeComponent/>
+                },
+                {
+                    path: "open_ai_project",
+                    element: <OpenAiComponent />
                 }
             ]
         }
