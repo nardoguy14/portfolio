@@ -33,6 +33,8 @@ function OpenAiComponent() {
         })
     }
 
+
+
     return (
     <Container>
         <h2>Data Scrape & Generate Embeddings</h2>
