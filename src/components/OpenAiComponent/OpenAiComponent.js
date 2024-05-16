@@ -29,6 +29,7 @@ function OpenAiComponent() {
         }
         console.log(data)
         axios.post("http://localhost:8009/job/data_scrape", data).then(response =>{
+            console.log(response)
 
         })
     }
