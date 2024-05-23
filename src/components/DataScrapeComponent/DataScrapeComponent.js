@@ -4,7 +4,7 @@ import axios from "axios";
 import {useState} from "react";
 
 
-function DataScrapeComponent({setDataScrapeId}) {
+function DataScrapeComponent({setDataScrapeId, setEmbeddingsType}) {
 
     const [formValues, setFormValues] = useState({
         url: '',
@@ -27,6 +27,7 @@ function DataScrapeComponent({setDataScrapeId}) {
             embeddings_type: formValues['embeddings_type'],
             max_depth: formValues['max_depth']
         }
+        setEmbeddingsType(formValues['embeddings_type'])
         console.log(data)
         axios.post("http://localhost:8009/job/data_scrape", data).then(response =>{
             console.log(response)
@@ -37,6 +38,7 @@ function DataScrapeComponent({setDataScrapeId}) {
                 })
             }, 3000);
         })
+
     }
 
 
