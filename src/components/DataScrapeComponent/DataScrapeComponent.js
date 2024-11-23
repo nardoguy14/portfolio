@@ -1,8 +1,9 @@
 import {Button, Form} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
-import axios from "axios";
 import {useState} from "react";
 
+import {sendDataScrapeRequest, getDataScrapeByEmbeddingsType} from "../../util/open_ai_service_requestor"
+import {delay} from "../../util/helpers";
 
 function DataScrapeComponent({setDataScrapeId, setEmbeddingsType}) {
 
@@ -20,25 +21,14 @@ function DataScrapeComponent({setDataScrapeId, setEmbeddingsType}) {
         });
     };
 
-    const handleDataScrapeSubmit = (e) => {
+    async function handleDataScrapeSubmit(e) {
         e.preventDefault()
-        var data = {
-            url: formValues['url'],
-            embeddings_type: formValues['embeddings_type'],
-            max_depth: formValues['max_depth']
-        }
         setEmbeddingsType(formValues['embeddings_type'])
-        console.log(data)
-        axios.post("http://localhost:8009/job/data_scrape", data).then(response =>{
-            console.log(response)
-            setTimeout(()=> {
-                axios.get("http://localhost:8009/job/data_scrape?embeddings_type="+data.embeddings_type).then(response2 => {
-                    console.log(response2)
-                    setDataScrapeId(response2.data[0]['__values__'].id)
-                })
-            }, 3000);
-        })
-
+        await sendDataScrapeRequest(formValues)
+        await delay(3000)
+        const response2 = await getDataScrapeByEmbeddingsType(formValues['embeddings_type'])
+        console.log(response2)
+        setDataScrapeId(response2.data[0]['__values__'].id)
     }
 
 
@@ -63,7 +53,7 @@ function DataScrapeComponent({setDataScrapeId, setEmbeddingsType}) {
             </Form.Group>
 
 
-            <Button variant="primary" type="submit" onClick={e => handleDataScrapeSubmit(e)}>
+            <Button variant="primary" type="submit" onClick={ async (e) => await handleDataScrapeSubmit(e)}>
                 Submit
             </Button>
         </Form>

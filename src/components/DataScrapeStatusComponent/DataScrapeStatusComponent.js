@@ -1,32 +1,38 @@
 import Container from "react-bootstrap/Container";
-import React, {useState} from "react";
-import axios from "axios";
+import React, {useState, useEffect} from "react";
+import {getDataScrapeById} from "../../util/open_ai_service_requestor";
+import {delay} from "../../util/helpers";
 
 
-function DataScrapeStatusComponent({dataScrapeId, stateTimeoutId, setTimeoutId, setDataScrapeFinished}) {
+function DataScrapeStatusComponent({dataScrapeId, setDataScrapeFinished}) {
     let FINISHED_STATUS = "FINISHED SCRAPING"
     const [job_status, setDataScrapeStatus] = useState({seen: 0, queue: 0, status: null})
     if(job_status.status === FINISHED_STATUS){
         setDataScrapeFinished(true)
     }
-    if(job_status.status !== FINISHED_STATUS && stateTimeoutId === null) {
-        const intervalId = setInterval(() => {
-            axios.get(`http://localhost:8009/job/data_scrape/${dataScrapeId}`).then(response2 => {
-                console.log(response2)
-                const values = response2.data['__values__']
 
-                if(values.status === FINISHED_STATUS){
-                    clearInterval(intervalId)
-                    setTimeoutId(null)
+    useEffect(() => {
+        const fetchStatus = async () => {
+            if(job_status.status !== FINISHED_STATUS) {
+                while(true){
+                    delay(1500)
+                    const response2 = await getDataScrapeById(dataScrapeId)
+                    console.log(response2)
+                    const values = response2.data['__values__']
+                    if (job_status.seen !== values.sites_seen || job_status.queue !== values.queue_size) {
+                        setDataScrapeStatus({seen: values.sites_seen, queue: values.queue_size, status: values.status})
+                    }
+                    if(values.status === FINISHED_STATUS){
+                        break
+                    }
+
                 }
-                if (job_status.seen !== values.sites_seen || job_status.queue !== values.queue_size) {
-                    console.log("the current timeout id is " + intervalId)
-                    setDataScrapeStatus({seen: values.sites_seen, queue: values.queue_size, status: values.status})
-                }
-            })
-        }, 1500)
-        setTimeoutId(intervalId)
-    }
+            }
+        };
+
+        fetchStatus();
+    }, []);
+
 
     return (
         <Container>
