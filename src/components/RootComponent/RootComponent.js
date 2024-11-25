@@ -8,6 +8,7 @@ import React from "react";
 import HomeComponent from "../HomeComponent/HomeComponent";
 import FooterComponent from "../FooterComponent/FooterComponent"
 import OpenAiComponent from "../OpenAiComponent/OpenAiComponent";
+import OpenAiEmbeddingsComponent from "../OpenAiEmbeddingsComponent/OpenAiEmbeddingsComponent"
 
 
 function RootComponent() {
@@ -38,8 +39,13 @@ function RootComponent() {
                                         </NavDropdown.Item>
 
                                         <NavDropdown.Item>
-                                            <Link to={"using_embeddings"}>Using OpenAI Embeddings</Link>
+                                            <Link to={"using_embeddings"}>Creating OpenAI Embeddings</Link>
                                         </NavDropdown.Item>
+
+                                        <NavDropdown.Item>
+                                            <Link to={"getting_embeddings"}>Listing OpenAI Embeddings</Link>
+                                        </NavDropdown.Item>
+
 
                                         <NavDropdown.Item>
                                             <Link to={"open_ai_project"}>Embeddings & ChatGPT</Link>
@@ -78,7 +84,11 @@ function RootComponent() {
                 {
                     path: "open_ai_project",
                     element: <OpenAiComponent />
-                }
+                },
+                {
+                    path: "getting_embeddings",
+                    element: <OpenAiEmbeddingsComponent />
+                },
             ]
         }
 

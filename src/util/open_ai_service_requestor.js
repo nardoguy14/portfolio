@@ -36,3 +36,9 @@ export async function createEmbeddings(embeddings_type){
     console.log(response)
     return response
 }
+
+export async function getEmbeddingTypes(){
+    const response = await axios.get("http://localhost:8009/embedding_types")
+    console.log(response)
+    return response
+}
