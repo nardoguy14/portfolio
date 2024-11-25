@@ -24,3 +24,15 @@ export async function getDataScrapeById(id) {
     return response2
 }
 
+export async function getTokenCount(embeddings_type) {
+    const response2 = await axios.get("http://localhost:8009/data_scrape/token-count?embeddings_type="+embeddings_type)
+    console.log("it happened here")
+    console.log(response2)
+    return response2
+}
+
+export async function createEmbeddings(embeddings_type){
+    const response = await axios.post("http://localhost:8009/openapi/embeddings/"+embeddings_type)
+    console.log(response)
+    return response
+}

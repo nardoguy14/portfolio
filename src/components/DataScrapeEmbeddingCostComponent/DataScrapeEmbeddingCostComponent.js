@@ -1,28 +1,24 @@
-import axios from "axios";
 import React, {useEffect, useState} from "react";
 import Container from "react-bootstrap/Container";
 import {Button} from "react-bootstrap";
+import {createEmbeddings, getTokenCount} from "../../util/open_ai_service_requestor";
 
 function DataScrapeEmbeddingCostComponent({embeddings_type}) {
     const [data, setData] = useState(null)
 
-    useEffect(() => {
-        axios.get("http://localhost:8009/data_scrape/token-count?embeddings_type="+embeddings_type).then(response2 => {
-            console.log("it happened here")
-            console.log(response2)
-            setData(response2.data)
-        })
+    useEffect( () => {
+        const fetchStatus = async () => {
+            const response = await getTokenCount(embeddings_type)
+            setData(response.data)
+        }
+        fetchStatus()
     }, [])
 
 
 
-    const handleCreateEmbeddings = (e) => {
+    const handleCreateEmbeddings = async (e) => {
         e.preventDefault()
-
-        axios.post("http://localhost:8009/openapi/embeddings/"+embeddings_type).then(response =>{
-            console.log(response)
-
-        })
+        await createEmbeddings(embeddings_type)
     }
 
 
@@ -38,7 +34,7 @@ function DataScrapeEmbeddingCostComponent({embeddings_type}) {
                     <h3>Token Count</h3>
                     <div>{data.token_count}</div>
 
-                    <Button variant="primary" type="submit" onClick={e => handleCreateEmbeddings(e)}>
+                    <Button variant="primary" type="submit" onClick={async (e) => await handleCreateEmbeddings(e)}>
                         Create Embeddings
                     </Button>
                 </div>
