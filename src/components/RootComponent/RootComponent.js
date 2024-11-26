@@ -8,7 +8,7 @@ import React from "react";
 import HomeComponent from "../HomeComponent/HomeComponent";
 import FooterComponent from "../FooterComponent/FooterComponent"
 import OpenAiComponent from "../OpenAiComponent/OpenAiComponent";
-import OpenAiEmbeddingsComponent from "../OpenAiEmbeddingsComponent/OpenAiEmbeddingsComponent"
+import OpenAiQuestionsComponent from "../OpenAiQuestionsComponent/OpenAiQuestionsComponent"
 
 
 function RootComponent() {
@@ -87,7 +87,7 @@ function RootComponent() {
                 },
                 {
                     path: "getting_embeddings",
-                    element: <OpenAiEmbeddingsComponent />
+                    element: <OpenAiQuestionsComponent />
                 },
             ]
         }

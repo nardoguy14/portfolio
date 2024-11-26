@@ -42,3 +42,16 @@ export async function getEmbeddingTypes(){
     console.log(response)
     return response
 }
+
+export async function postOpenAIQuestion(query, embeddings_type, intro, seperator){
+    var data = {
+        query: query,
+        embeddings_type: embeddings_type,
+        intro: intro,
+        seperator: seperator
+    }
+    const response = await axios.post("http://localhost:8009/openapi/questions/response", data)
+    console.log(response)
+    return response
+}
+

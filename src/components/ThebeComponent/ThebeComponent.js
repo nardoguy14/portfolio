@@ -26,11 +26,13 @@ function ThebeComponent({thebeUrl}) {
             const jsonData = JSON.parse(text);
             setData(jsonData)
         })
+        alert("hi")
     }
     else {
+        alert("yo")
         const REACT_APP_JUPYTER_SERVER_HOST = process.env.REACT_APP_JUPYTER_SERVER_HOST;
         const REACT_APP_JUPYTER_SERVER_TOKEN = process.env.REACT_APP_JUPYTER_SERVER_TOKEN
-
+        alert(REACT_APP_JUPYTER_SERVER_HOST)
         console.log("loadinggg")
         window.thebe.bootstrap({
             url: `http://${REACT_APP_JUPYTER_SERVER_HOST}:8888/?token=${REACT_APP_JUPYTER_SERVER_TOKEN}`,

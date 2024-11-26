@@ -15,7 +15,7 @@ function DataScrapeStatusComponent({dataScrapeId, setDataScrapeFinished}) {
         const fetchStatus = async () => {
             if(job_status.status !== FINISHED_STATUS) {
                 while(true){
-                    delay(1500)
+                    await delay(1500)
                     const response2 = await getDataScrapeById(dataScrapeId)
                     console.log(response2)
                     const values = response2.data['__values__']
@@ -25,7 +25,6 @@ function DataScrapeStatusComponent({dataScrapeId, setDataScrapeFinished}) {
                     if(values.status === FINISHED_STATUS){
                         break
                     }
-
                 }
             }
         };
