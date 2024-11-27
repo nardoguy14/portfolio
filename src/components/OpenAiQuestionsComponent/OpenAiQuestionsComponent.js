@@ -9,7 +9,7 @@ function OpenAiQuestionsComponent() {
     const [data, setData] = useState({"embedding_types":[]})
     const [selectedItem, setSelectedItem] = useState("Choose Embedding");
     const [text, setText] = useState("");
-    const [questionResponse, setQuestionResponse] = useState("");
+    const [questionResponse, setQuestionResponse] = useState("")
     const handleChange = (event) => {
         setText(event.target.value);
     };

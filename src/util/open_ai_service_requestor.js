@@ -32,7 +32,7 @@ export async function getTokenCount(embeddings_type) {
 }
 
 export async function createEmbeddings(embeddings_type){
-    const response = await axios.post("http://localhost:8009/openapi/embeddings/"+embeddings_type)
+    const response = await axios.post("http://localhost:8009/openapi/embeddings/"+embeddings_type+ "?create_embeddings=true")
     console.log(response)
     return response
 }
